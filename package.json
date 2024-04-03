@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@axe-core/playwright": "^4.8.5",
+    "axe-html-reporter": "^2.2.3",
     "fs": "^0.0.1-security",
     "pa11y": "^8.0.0"
   }
