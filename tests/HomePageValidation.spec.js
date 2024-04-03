@@ -1,6 +1,8 @@
 import { test } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { generateAccessibilityReport } from '../utils.js'
+require('dotenv').config()
+
 
 const directoryPath = 'test-results' // Defining the directory path where accessibility reports will be stored
 
@@ -8,7 +10,7 @@ test('Validate FlipCart login page accessibility rules as per WCAG', async ({
   page
 }) => {
   //Launching the web page
-  await page.goto('https://www.flipkart.com/')
+  await page.goto(process.env.FLIPCART_URL)
   // Perform accessibility analysis on the current page using AxeCore, storing the results in axeBuilder.
   const axeBuilder = await new AxeBuilder({ page }).analyze()
   const reportFileName = 'flipcartHomePageReport' // Defining the filename for the FlipCart homepage accessibility report
@@ -19,7 +21,7 @@ test('Validate FlipCart login page accessibility rules as per WCAG', async ({
 test('Validate Myntra login page accessibility rules as per WCAG', async ({
   page
 }) => {
-  await page.goto('https://www.myntra.com/')
+  await page.goto(process.env.MYNTRA_URL)
   // Perform accessibility analysis on the current page using AxeCore, storing the results in axeBuilder.
   const axeBuilder = await new AxeBuilder({ page })
     .disableRules([
@@ -42,7 +44,7 @@ test('Validate Myntra login page accessibility rules as per WCAG', async ({
 test('Validate Amazon login page accessibility rules as per WCAG', async ({
   page
 }) => {
-  await page.goto('https://www.amazon.com')
+  await page.goto(process.env.AMAZON_URL)
   try {
     // Perform accessibility analysis on the current page using AxeCore, storing the results in axeBuilder.
     const axeBuilder = await new AxeBuilder({ page }).analyze()
